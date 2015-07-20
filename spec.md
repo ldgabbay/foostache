@@ -118,7 +118,7 @@ When applying a JSON object to a template:
 </b>
 
     escapes.push(escape_type)
-    render(template)
+    print render(template)
     escapes.pop()
 
 
