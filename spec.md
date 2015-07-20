@@ -21,17 +21,17 @@ When applying a JSON object to a template:
 
 ### escape the escape
 
-**
+<b>
 `{{{{`
-**
+</b>
 
     print `{{`
 
 ### string field
 
-**
+<b>
 `{{` *path* [ `|` *escape_list* ] `}}`
-**
+</b>
 
     x = resolve(contexts, path)
     assert x is string
@@ -41,9 +41,9 @@ When applying a JSON object to a template:
 
 ### number field
 
-**
+<b>
 `{{` *path* [ *number_format* ] [ `|` *escape_list* ] `}}`
-**
+</b>
 
     x = resolve(contexts, path)
     assert x is number
@@ -55,12 +55,12 @@ When applying a JSON object to a template:
 
 ### if-elif-else-end
 
-**
+<b>
 `{{:if` *expression* `}}` *template* <br>
 [ `{{:elif` *elif_expression* `}}` *elif_template* ]\*<br>
 [ `{{:else}}` *else_template* ]<br>
 `{{:end}}`
-**
+</b>
 
     if eval(expression) == true:
         print render(template)
@@ -72,10 +72,10 @@ When applying a JSON object to a template:
 
 ### change context
 
-**
+<b>
 `{{:with` *path* `}}` *template*<br>
 `{{:end}}`
-**
+</b>
 
     contexts.push(path)
     print render(template)
@@ -84,14 +84,14 @@ When applying a JSON object to a template:
 
 ### iterate
 
-**
+<b>
 `{{:iterate` *path* *range* `}}` *template*<br>
 [ `{{:before}}` *before_template* ]<br>
 [ `{{:after}}` *after_template* ]<br>
 [ `{{:between}}` *between_template* ]<br>
 [ `{{:else}}` *else_template* ]<br>
 `{{:end}}`
-**
+</b>
 
     x = resolve(contexts, path)
     assert x is array
@@ -113,9 +113,9 @@ When applying a JSON object to a template:
 
 ### escape
 
-**
+<b>
 `{{:escape` *escape_type* `}}` *template* `{{:end}}`
-**
+</b>
 
     escapes.push(escape_type)
     render(template)
@@ -124,9 +124,9 @@ When applying a JSON object to a template:
 
 ### comment
 
-**
+<b>
 `{{!` *text* `}}`
-**
+</b>
 
     print ""
 
