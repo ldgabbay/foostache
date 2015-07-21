@@ -57,15 +57,15 @@ When applying a JSON object to a template:
 
 <b>
 `{{:if` *expression* `}}` *template* <br>
-[ `{{:elif` *elif_expression* `}}` *elif_template* ]\*<br>
+[ `{{:elseif` *elseif_expression* `}}` *elseif_template* ]\*<br>
 [ `{{:else}}` *else_template* ]<br>
 `{{:end}}`
 </b>
 
     if eval(expression) == true:
         print render(template)
-    else if eval(elif_expression) == true:
-        print render(elif_template)
+    else if eval(elseif_expression) == true:
+        print render(elseif_template)
     else:
         print render(else_template)
 
