@@ -53,7 +53,7 @@ When applying a JSON object to a template:
     print x
 
 
-### if-elif-else-end
+### if-elseif-else-end
 
 <b>
 `{{:if` *expression* `}}` *template* <br>
