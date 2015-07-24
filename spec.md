@@ -8,48 +8,48 @@ When applying a JSON object to a template:
 ## Template Body
 
 * The template is unicode.
-* The escape pattern `{{` starts tag parsing.
-* To embed `{{` in the template, use `{{{{`
+* The pattern `{{` opens a tag.
 
 ## Tag Body
 
 * Tags are of the form `{{`...`}}`
-* The escape pattern is `}}`
-* To embed `}}` in the tag body, use `}}}}` (even if inside double quotes)
+* The pattern `}}` closes a tag.
 
 ## Tags
 
-### escape the escape
+### literal
 
 <b>
-`{{{{`
+`{{"` *literal* `"}}`
 </b>
 
-    print `{{`
+    print literal
 
 ### string field
 
 <b>
-`{{` *path* [ `|` *escape_list* ] `}}`
+`{{` *path* [ `|` *filter_name* ]\* `}}`
 </b>
 
     x = resolve(contexts, path)
     assert x is string
-    for escape in escape_list + escapes:
-        x = escape(x)
+    for filter in filter_list + filters:
+        x = filter(x)
     print x
 
 ### number field
 
 <b>
-`{{` *path* [ *number_format* ] [ `|` *escape_list* ] `}}`
+`{{` *path* *number_format* [ `|` *filter_name* ]\* `}}`
 </b>
+
+number_format is '%' '0'? NUMBER? ('d'|'f'|'e')
 
     x = resolve(contexts, path)
     assert x is number
     x = number_to_string(x, number_format)
-    for escape in escape_list + escapes:
-        x = escape(x)
+    for filter in filter_list + filters:
+        x = filter(x)
     print x
 
 
@@ -111,15 +111,15 @@ When applying a JSON object to a template:
         print render(after_template)
 
 
-### escape
+### filter
 
 <b>
-`{{:escape` *escape_type* `}}` *template* `{{:end}}`
+`{{` `|` *filter_name* `}}` *template* `{{:end}}`
 </b>
 
-    escapes.push(escape_type)
+    filters.push(filter_name)
     print render(template)
-    escapes.pop()
+    filters.pop()
 
 
 ### comment
