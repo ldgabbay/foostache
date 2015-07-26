@@ -12,7 +12,7 @@ statements
 
 statement
     : rawText
-    | OPENL literalText CLOSEL
+    | OPENL literalText? CLOSEL
     | stringField
     | numberField
     | ifBlock
@@ -26,7 +26,7 @@ rawText
     ;
 
 literalText
-    : TEXTL*
+    : TEXTL+
     ;
 
 stringField
