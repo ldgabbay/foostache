@@ -12,7 +12,7 @@ statements
 
 statement
     : rawText
-    | OPENL literalText? CLOSEL
+    | literal
     | stringField
     | numberField
     | ifBlock
@@ -25,21 +25,29 @@ rawText
     : TEXT+
     ;
 
+literal
+    : OPENL literalText CLOSEL
+    ;
+
 literalText
-    : TEXTL+
+    : TEXTL*
     ;
 
 stringField
-    : OPEN WS* path ( WS+ PIPE WS* filterName=ID )* WS* CLOSE
+    : OPEN WS* path ( WS* inlineFilter )* WS* CLOSE
     ;
 
 numberField
-    : OPEN WS* path WS+ numberFormat=NUMBER_FORMAT ( WS+ PIPE WS* filterName=ID )* WS* CLOSE
+    : OPEN WS* path WS+ numberFormat ( WS* inlineFilter )* WS* CLOSE
     ;
 
-// numberFormat
-//     : PERCENT (flags=ZERO)? (width=PINTEGER)? (DOT precision=PINTEGER)? specifier=NUMBER_SPECIFIER
-//     ;
+inlineFilter
+    : PIPE WS* ID
+    ;
+
+numberFormat
+    : PERCENT (flags=ZERO)? (width=PINTEGERN)? (DOTN precision=PINTEGERN)? specifier=NUMBER_SPECIFIER
+    ;
 
 ifBlock
     : ifTag statements elseifBlock* elseBlock? OPEN END CLOSE
@@ -62,13 +70,13 @@ elseBlock
     ;
 
 expression
-    : path
-    | path WS+ EXISTS
-    | path WS+ IS WS+ TYPE
-    | LPAREN WS* expression WS* RPAREN
-    | expression WS+ AND WS+ expression
-    | expression WS+ OR WS+ expression
-    | NOT WS+ expression
+    : path                                          # boolExpression
+    | path WS+ EXISTS                               # existsExpression
+    | path WS+ IS WS+ TYPE                          # typeExpression
+    | NOT WS+ expression                            # notExpression
+    | expr1=expression WS+ AND WS+ expr2=expression # andExpression
+    | expr1=expression WS+ OR WS+ expr2=expression  # orExpression
+    | LPAREN WS* expression WS* RPAREN              # parenExpression
     ;
 
 path

@@ -54,12 +54,18 @@ FILTER : ':filter' ;
 COLON : ':' ;
 
 PIPE : '|' ;
-// PERCENT : '%' ;
-// ZERO : '0' ;
-// NUMBER_SPECIFIER : 'd' | 'f' | 'e' ;
+PERCENT : '%' -> pushMode(inNumSpec);
 
-NUMBER_FORMAT : '%' '0'? PINTEGER? (DOT PINTEGER)? ('d' | 'f' | 'e') ;
+// NUMBER_FORMAT : '%' '0'? PINTEGER? (DOT PINTEGER)? ('d' | 'f' | 'e') ;
 
 PINTEGER : [1-9][0-9]* ;
 INTEGER : '0' | ('-'? [1-9][0-9]*) ;
 ID : [a-zA-Z0-9_]+ ;
+
+
+mode inNumSpec;
+
+ZERO : '0' ;
+DOTN : '.' ;
+PINTEGERN : [1-9][0-9]* ;
+NUMBER_SPECIFIER : ( 'd' | 'f' | 'e' ) -> popMode ;
