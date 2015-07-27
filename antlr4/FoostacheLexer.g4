@@ -50,6 +50,7 @@ ITERATE : ':iterate' ;
 BEFORE : ':before' ;
 AFTER : ':after' ;
 BETWEEN : ':between' ;
+FILTER : ':filter' ;
 COLON : ':' ;
 
 PIPE : '|' ;

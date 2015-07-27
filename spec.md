@@ -114,7 +114,7 @@ number_format is '%' '0'? NUMBER? ('d'|'f'|'e')
 ### filter
 
 <b>
-`{{` `|` *filter_name* `}}` *template* `{{:end}}`
+`{{:filter` *filter_name* `}}` *template* `{{:end}}`
 </b>
 
     filters.push(filter_name)

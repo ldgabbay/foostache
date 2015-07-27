@@ -18,7 +18,7 @@ statement
     | ifBlock
     | withBlock
     | iterateBlock
-    | escapeBlock
+    | filterBlock
     ;
 
 rawText
@@ -120,6 +120,6 @@ iterateElseClause
     : OPEN ELSE CLOSE statements
     ;
 
-escapeBlock
-    : OPEN PIPE WS* filterName=ID WS* CLOSE statements OPEN END CLOSE
+filterBlock
+    : OPEN FILTER WS* filterName=ID WS* CLOSE statements OPEN END CLOSE
     ;
