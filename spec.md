@@ -154,6 +154,15 @@ For an array of length *n*:
 * **2:-1** &mdash; 2, 3, 4, ..., *n*-2
 * **-2,-1,:-2** &mdash; *n*-2, *n*-1, 0, 1, 2, ..., *n*-3
 
+
+## Filters
+
+Filters are applied to values in this order:
+
+* right to left as declared in `{{` *path* `}}` tags
+* inner to outer as scoped by `{{:filter` *filter_name* `}}` blocks
+
+
 ## Grammar
 
     PATH
