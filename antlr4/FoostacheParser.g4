@@ -102,7 +102,15 @@ iterateBlock
     ;
 
 indexRange
-    : start=INTEGER? ( COLON stop=INTEGER? ( COLON step=PINTEGER )? )?
+    : INTEGER? indexRangeB?
+    ;
+
+indexRangeB
+    : COLON INTEGER? indexRangeC?
+    ;
+
+indexRangeC
+    : COLON INTEGER
     ;
 
 iterateClause
