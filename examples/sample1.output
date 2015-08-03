@@ -1,0 +1,21 @@
+This is a sample template that demonstrates all of the features of foostache.
+
+Here's an empty literal:                 ""
+Here's a literal:                        "{{"
+Here's a string field:                   <b>I love pie</b>
+Here's a string field for URI:           %3Cb%3EI%20love%20pie%3C%2Fb%3E
+Here's a string field for HTML:          &lt;b&gt;I love pie&lt;/b&gt;
+Here's HTML, URI:                        %3Cb%3EI%20love%20pie%3C%2Fb%3E
+Here's URI, HTML:                        %26lt%3Bb%26gt%3BI%20love%20pie%26lt%3B%2Fb%26gt%3B
+Here's a number field %5d:                  10
+Here's a number field %07.2f:            0010.00
+Here's a conditional:                    bool2 was true
+Here's another conditional:              not bool and bool2
+Here's a change in context:              sub.foo = bar
+Here's back to normal:                   foo = baz
+Here's an array index:                   a
+Here's an array iterator:                [a, b, c, d, e, f, g]
+Here's an array iterator over 1::2 :     [b, d, f]
+Here's a filter block:                   &lt;b&gt;I love pie&lt;/b&gt;
+Here's a comment:                        You are a good programmer.
+
