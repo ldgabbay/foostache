@@ -5,8 +5,8 @@ Here's a literal:                        "{{"
 Here's a string field:                   <b>I love pie</b>
 Here's a string field for URI:           %3Cb%3EI%20love%20pie%3C%2Fb%3E
 Here's a string field for HTML:          &lt;b&gt;I love pie&lt;/b&gt;
-Here's HTML, URI:                        %3Cb%3EI%20love%20pie%3C%2Fb%3E
-Here's URI, HTML:                        %26lt%3Bb%26gt%3BI%20love%20pie%26lt%3B%2Fb%26gt%3B
+Here's HTML, URI:                        %26lt%3Bb%26gt%3BI%20love%20pie%26lt%3B%2Fb%26gt%3B
+Here's URI, HTML:                        %3Cb%3EI%20love%20pie%3C%2Fb%3E
 Here's a number field %5d:                  10
 Here's a number field %07.2f:            0010.00
 Here's a conditional:                    bool2 was true
