@@ -1,0 +1,9 @@
+{
+	"str": "<b>I love pie</b>",
+	"num": 10,
+	"bool": false,
+	"bool2": true,
+	"sub": {"foo": "bar"},
+	"foo": "baz",
+	"arr": ["a", "b", "c", "d", "e", "f", "g"]
+}
