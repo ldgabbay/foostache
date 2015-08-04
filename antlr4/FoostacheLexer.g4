@@ -62,7 +62,7 @@ mode inNumSpec;
 ZERO : '0' ;
 DOTN : '.' ;
 PINTEGERN : [1-9][0-9]* ;
-NUMBER_SPECIFIER : ( 'd' | 'f' | 'e' ) -> popMode ;
+NUMBER_SPECIFIER : ( 'd' | 'f' ) -> popMode ;
 
 
 mode inQuotedString;
