@@ -95,7 +95,7 @@ print x
 
 <b>
 `{{:if` [*expression*](#expressions) `}}` [*template*](#template) <br>
-\[ `{{:elseif` [*elseif_expression*](#expressions) `}}` *elseif_template* &nbsp; \]\*<br>
+\[ `{{:elseif` [*elseif_expression*](#expressions) `}}` [*elseif_template*](#template) &nbsp; \]\*<br>
 \[ `{{:else}}` [*else_template*](#template) &nbsp; \]<br>
 `{{:end}}`
 </b>
