@@ -85,8 +85,8 @@ path
     ;
 
 objectKey
-    : ID
-    | STRING
+    : ID                                            # idObjectKey
+    | OPENQS (CHARQS | ESCCHARQS)* CLOSEQS          # qsObjectKey
     ;
 
 arrayIndex

@@ -19,13 +19,7 @@ mode inTag;
 CLOSE : '}}' -> popMode ;
 WS : [ \t\r\n];
 
-STRING: '"' (ESC| ~('\\' | '"'))*? '"' ;
-
-fragment
-ESC : '\\' ( '"' | '\\' | '/' | 'b' | 'f' | 'n' | 'r' | 't' | 'u' HEXDIGIT HEXDIGIT HEXDIGIT HEXDIGIT ) ;
-
-fragment
-HEXDIGIT : [0-9a-fA-F] ;
+OPENQS: '"' -> pushMode(inQuotedString) ;
 
 TYPE : 'string' | 'number' | 'object' | 'array' | 'boolean' | 'null' ;
 
@@ -69,3 +63,16 @@ ZERO : '0' ;
 DOTN : '.' ;
 PINTEGERN : [1-9][0-9]* ;
 NUMBER_SPECIFIER : ( 'd' | 'f' | 'e' ) -> popMode ;
+
+
+mode inQuotedString;
+
+fragment
+HEXDIGIT : [0-9a-fA-F] ;
+
+ESCCHARQS : '\\' ( '"' | '\\' | '/' | 'b' | 'f' | 'n' | 'r' | 't' | 'u' HEXDIGIT HEXDIGIT HEXDIGIT HEXDIGIT ) ;
+
+CLOSEQS: '"' -> popMode ;
+CHARQS: . ;
+
+// STRING: '"' (ESC| ~('\\' | '"'))*? '"' ;
