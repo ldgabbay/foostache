@@ -216,7 +216,7 @@ Paths point to a specific value within the [*context stack*](#context-stack).
 
 ## Context Stack
 
-The context stack represents a history of input values used to render a template. Normally, the context stack is just once context, being the original JSON input. Sometimes the context will switch, for example when iterating over values within an array. This pushes a new value onto the stack temporarily, for instance the value of the current element in the array.
+The context stack represents a history of input values used to render a template. Normally, the context stack is just one context, being the original JSON input. Sometimes the context will switch, for example when iterating over values within an array. This pushes a new value onto the stack temporarily, for instance the value of the current element in the array.
 
 
 ## Ranges
