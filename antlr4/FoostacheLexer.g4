@@ -17,38 +17,39 @@ TEXTL : . ;
 mode inTag;
 
 CLOSE : '}}' -> popMode ;
-WS : [ \t\r\n];
+WS : [ \t\r\n]+ -> skip ;
 
 OPENQS: '"' -> pushMode(inQuotedString) ;
 
-TYPE : 'string' | 'number' | 'object' | 'array' | 'boolean' | 'null' ;
-
-LPAREN : '(' ;
-RPAREN : ')' ;
-DOT : '.' ;
+AFTER : ':after' ;
+BEFORE : ':before' ;
+BETWEEN : ':between' ;
 ELSE : ':else' ;
 ELSEIF : ':elseif' ;
 END : ':end' ;
 ESCAPE : ':escape' ;
+FILTER : ':filter' ;
 IF : ':if' ;
+ITERATE : ':iterate' ;
 WITH : ':with' ;
-LBRACKET : '[' ;
-RBRACKET : ']' ;
-CARET : '^' ;
+
+TYPE : 'string' | 'number' | 'object' | 'array' | 'boolean' | 'null' ;
 AND : 'and' ;
 EXISTS : 'exists' ;
 IS : 'is' ;
 NOT : 'not' ;
 OR : 'or' ;
-ITERATE : ':iterate' ;
-BEFORE : ':before' ;
-AFTER : ':after' ;
-BETWEEN : ':between' ;
-FILTER : ':filter' ;
+
+LPAREN : '(' ;
+RPAREN : ')' ;
+DOT : '.' ;
+LBRACKET : '[' ;
+RBRACKET : ']' ;
+CARET : '^' ;
 COLON : ':' ;
 
 PIPE : '|' ;
-PERCENT : '%' -> pushMode(inNumSpec);
+PERCENT : '%' -> pushMode(inNumSpec) ;
 
 INTEGER : '0' | ('-'? [1-9][0-9]*) ;
 ID : [a-zA-Z0-9_]+ ;

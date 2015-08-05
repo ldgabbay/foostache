@@ -34,15 +34,15 @@ literalText
     ;
 
 stringField
-    : OPEN WS* path ( WS* inlineFilter )* WS* CLOSE
+    : OPEN path ( inlineFilter )* CLOSE
     ;
 
 numberField
-    : OPEN WS* path WS+ numberFormat ( WS* inlineFilter )* WS* CLOSE
+    : OPEN path numberFormat ( inlineFilter )* CLOSE
     ;
 
 inlineFilter
-    : PIPE WS* ID
+    : PIPE ID
     ;
 
 numberFormat
@@ -54,7 +54,7 @@ ifBlock
     ;
 
 ifTag
-    : OPEN IF WS+ expression WS* CLOSE
+    : OPEN IF expression CLOSE
     ;
 
 elseifBlock
@@ -62,7 +62,7 @@ elseifBlock
     ;
 
 elseifTag
-    : OPEN ELSEIF WS+ expression WS* CLOSE
+    : OPEN ELSEIF expression CLOSE
     ;
 
 elseBlock
@@ -70,13 +70,13 @@ elseBlock
     ;
 
 expression
-    : path                                          # boolExpression
-    | path WS+ EXISTS                               # existsExpression
-    | path WS+ IS WS+ TYPE                          # typeExpression
-    | NOT WS+ expression                            # notExpression
-    | expr1=expression WS+ AND WS+ expr2=expression # andExpression
-    | expr1=expression WS+ OR WS+ expr2=expression  # orExpression
-    | LPAREN WS* expression WS* RPAREN              # parenExpression
+    : path                                     # boolExpression
+    | path EXISTS                              # existsExpression
+    | path IS TYPE                             # typeExpression
+    | NOT expression                           # notExpression
+    | expr1=expression AND expr2=expression    # andExpression
+    | expr1=expression OR expr2=expression     # orExpression
+    | LPAREN expression RPAREN                 # parenExpression
     ;
 
 path
@@ -94,11 +94,11 @@ arrayIndex
     ;
 
 withBlock
-    : OPEN WITH WS+ path WS* CLOSE statements OPEN END CLOSE
+    : OPEN WITH path CLOSE statements OPEN END CLOSE
     ;
 
 iterateBlock
-    : OPEN ITERATE WS+ path WS+ indexRange WS* CLOSE statements iterateClause* OPEN END CLOSE
+    : OPEN ITERATE path indexRange CLOSE statements iterateClause* OPEN END CLOSE
     ;
 
 indexRange
@@ -137,5 +137,5 @@ iterateElseClause
     ;
 
 filterBlock
-    : OPEN FILTER WS* filterName=ID WS* CLOSE statements OPEN END CLOSE
+    : OPEN FILTER filterName=ID CLOSE statements OPEN END CLOSE
     ;
