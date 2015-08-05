@@ -11,6 +11,7 @@ Sections:
 * [Filter Stack](#filter-stack)
 * [Number Formats](#number-formats)
 * [Expressions](#expressions)
+* [Keywords](#keywords)
 
 
 ## Template
@@ -285,3 +286,19 @@ A number format specifies how to print a number field. The syntax is:
 <b>[*expression*](#expressions) `and` [*expression*](#expressions)</b><br/>&nbsp; &mdash; logical and of the results of both *expressions*<br/><br/>
 <b>[*expression*](#expressions) `or` [*expression*](#expressions)</b><br/>&nbsp; &mdash; logical or of the results of both *expressions*<br/><br/>
 <b>`not` [*expression*](#expressions)</b><br/>&nbsp; &mdash; logical not of the result of *expression*<br/><br/>
+
+## Keywords
+
+These keywords are reserved and cannot be used as unquoted object keys.
+
+* `and`
+* `array`
+* `boolean`
+* `exists`
+* `is`
+* `not`
+* `null`
+* `number`
+* `object`
+* `or`
+* `string`
