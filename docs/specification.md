@@ -11,6 +11,7 @@ Sections:
 * [Filter Stack](#filter-stack)
 * [Number Formats](#number-formats)
 * [Expressions](#expressions)
+* [Keywords](#keywords)
 
 
 ## Template
@@ -172,7 +173,7 @@ else:
 `{{:filter` [*filter*](#filters) `}}` [*template*](#template) `{{:end}}`
 </b>
 
-Pushes [*filter*](#filters) onto the [*filter stack*](#filter-stack) while rendering *template*.
+Pushes [*filter*](#filters) onto the [*filter stack*](#filter-stack) while rendering [*template*](#template).
 
 In pseudocode:
 
@@ -200,7 +201,15 @@ pass
 
 ## Paths
 
-Paths point to a specific value within the [*context stack*](#context-stack).
+Paths point to a specific value within the current [*context*](#contexts) or possibly within another [*context*](#contexts) deeper within the [*context stack*](#context-stack).
+
+The simplest path is simply `.`, which refers to the current [*context*](#contexts). Other contexts deeper down the [*context stack*](#context-stack) can be accessed by `^`. Each `^` goes down the stack by one.
+
+If the path refers to an object, you can access the value for a key by appending the path with a `.` followed by the key itself. (The first object in the path does not have a preceding `.`) Generally, object keys can be written directly as long as they are comprised of only letters, numbers, and underscores, and are not among the reserved **foostache** [keywords](#keywords).  Otherwise, object keys can be written as double quoted strings, using the same escaping syntax as JSON strings.
+
+If the path refers to an array, you can access the value of a specific index by appending the path with a `[`, the index, and a `]`. If the index is negative, it is assumed to be relative to the end of the array.
+
+Examples:
 
 * **`.`** &mdash; current context
 * **`^`** &mdash; previous context
@@ -209,13 +218,18 @@ Paths point to a specific value within the [*context stack*](#context-stack).
 * **`abc`** &mdash; current context as object, value of key `abc`
 * **`^abc.xyz`** &mdash; previous context as object, value of key `abc` as object, value of key `xyz`
 * **`[0]`** &mdash; current context as array, element 0
+* **`[-1]`** &mdash; current context as array, last element
+* **`[-2]`** &mdash; current context as array, second to last element
 * **`^abc[0]`** &mdash; previous context as object, value of key `abc` as array, element 0
-* **`^^abc.xyz[0].pdq`** &mdash; *an exercise for the reader*
+* **`^^abc.xyz[0].pdq`**
+* **`"a key with spaces"`**
+* **`do.you.want.to.build.a."\u2603"`**
+* **`"number"."string"."exists"`**
 
 
 ## Context Stack
 
-The context stack represents a history of input values used to render a template. Normally, the context stack is just once context, being the original JSON input. Sometimes the context will switch, for example when iterating over values within an array. This pushes a new value onto the stack temporarily, for instance the value of the current element in the array.
+The context stack represents a history of input values used to render a template. Normally, the context stack is just one context, being the original JSON input. Sometimes the context will switch, for example when iterating over values within an array. This pushes a new value onto the stack temporarily, for instance the value of the current element in the array.
 
 
 ## Ranges
@@ -285,3 +299,19 @@ A number format specifies how to print a number field. The syntax is:
 <b>[*expression*](#expressions) `and` [*expression*](#expressions)</b><br/>&nbsp; &mdash; logical and of the results of both *expressions*<br/><br/>
 <b>[*expression*](#expressions) `or` [*expression*](#expressions)</b><br/>&nbsp; &mdash; logical or of the results of both *expressions*<br/><br/>
 <b>`not` [*expression*](#expressions)</b><br/>&nbsp; &mdash; logical not of the result of *expression*<br/><br/>
+
+## Keywords
+
+These keywords are reserved and cannot be used as unquoted object keys.
+
+* `and`
+* `array`
+* `boolean`
+* `exists`
+* `is`
+* `not`
+* `null`
+* `number`
+* `object`
+* `or`
+* `string`
