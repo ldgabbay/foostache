@@ -80,8 +80,8 @@ expression
     ;
 
 path
-    : DOT
-    | CARET* ((objectKey | LBRACKET arrayIndex RBRACKET) ((DOT objectKey) | (LBRACKET arrayIndex RBRACKET))*)?
+    : DOT # dotPath
+    | CARET* ((objectKey | LBRACKET arrayIndex RBRACKET) ((DOT objectKey) | (LBRACKET arrayIndex RBRACKET))*)? # caretPath
     ;
 
 objectKey
