@@ -172,7 +172,7 @@ else:
 `{{:filter` [*filter*](#filters) `}}` [*template*](#template) `{{:end}}`
 </b>
 
-Pushes [*filter*](#filters) onto the [*filter stack*](#filter-stack) while rendering *template*.
+Pushes [*filter*](#filters) onto the [*filter stack*](#filter-stack) while rendering [*template*](#template).
 
 In pseudocode:
 
