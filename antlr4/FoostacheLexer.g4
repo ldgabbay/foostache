@@ -17,48 +17,40 @@ TEXTL : . ;
 mode inTag;
 
 CLOSE : '}}' -> popMode ;
-WS : [ \t\r\n];
+WS : [ \t\r\n]+ -> skip ;
 
-STRING: '"' (ESC| ~('\\' | '"'))*? '"' ;
+OPENQS: '"' -> pushMode(inQuotedString) ;
 
-fragment
-ESC : '\\' ( '"' | '\\' | '/' | 'b' | 'f' | 'n' | 'r' | 't' | 'u' HEXDIGIT HEXDIGIT HEXDIGIT HEXDIGIT ) ;
-
-fragment
-HEXDIGIT : [0-9a-fA-F] ;
-
-TYPE : 'string' | 'number' | 'object' | 'array' | 'boolean' | 'null' ;
-
-LPAREN : '(' ;
-RPAREN : ')' ;
-DOT : '.' ;
+AFTER : ':after' ;
+BEFORE : ':before' ;
+BETWEEN : ':between' ;
 ELSE : ':else' ;
 ELSEIF : ':elseif' ;
 END : ':end' ;
 ESCAPE : ':escape' ;
+FILTER : ':filter' ;
 IF : ':if' ;
+ITERATE : ':iterate' ;
 WITH : ':with' ;
-LBRACKET : '[' ;
-RBRACKET : ']' ;
-CARET : '^' ;
+
+TYPE : 'string' | 'number' | 'object' | 'array' | 'boolean' | 'null' ;
 AND : 'and' ;
 EXISTS : 'exists' ;
 IS : 'is' ;
 NOT : 'not' ;
 OR : 'or' ;
-ITERATE : ':iterate' ;
-BEFORE : ':before' ;
-AFTER : ':after' ;
-BETWEEN : ':between' ;
-FILTER : ':filter' ;
+
+LPAREN : '(' ;
+RPAREN : ')' ;
+DOT : '.' ;
+LBRACKET : '[' ;
+RBRACKET : ']' ;
+CARET : '^' ;
 COLON : ':' ;
 
 PIPE : '|' ;
-PERCENT : '%' -> pushMode(inNumSpec);
+PERCENT : '%' -> pushMode(inNumSpec) ;
 
-// NUMBER_FORMAT : '%' '0'? PINTEGER? (DOT PINTEGER)? ('d' | 'f' | 'e') ;
-
-// PINTEGER : [1-9][0-9]* ;
 INTEGER : '0' | ('-'? [1-9][0-9]*) ;
 ID : [a-zA-Z0-9_]+ ;
 
@@ -68,4 +60,20 @@ mode inNumSpec;
 ZERO : '0' ;
 DOTN : '.' ;
 PINTEGERN : [1-9][0-9]* ;
-NUMBER_SPECIFIER : ( 'd' | 'f' | 'e' ) -> popMode ;
+NUMBER_SPECIFIER : ( 'd' | 'f' ) -> popMode ;
+
+// PINTEGER : [1-9][0-9]* ;
+// NUMBER_FORMAT : '%' '0'? PINTEGER? (DOT PINTEGER)? ('d' | 'f' | 'e') ;
+
+
+mode inQuotedString;
+
+fragment
+HEXDIGIT : [0-9a-fA-F] ;
+
+ESCCHARQS : '\\' ( '"' | '\\' | '/' | 'b' | 'f' | 'n' | 'r' | 't' | 'u' HEXDIGIT HEXDIGIT HEXDIGIT HEXDIGIT ) ;
+
+CLOSEQS: '"' -> popMode ;
+CHARQS: . ;
+
+// STRING: '"' (ESC| ~('\\' | '"'))*? '"' ;

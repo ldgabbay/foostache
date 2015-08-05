@@ -14,7 +14,7 @@ Here's another conditional:              {{:if not bool and bool2}}not bool and 
 Here's a change in context:              {{:with sub}}sub.foo = {{foo}}{{:end}}
 Here's back to normal:                   foo = {{foo}}
 Here's an array index:                   {{ arr[0] }}
-Here's an array iterator:                {{:iterate arr }}{{.}}{{:before}}[{{:between}}, {{:after}}]{{:else}}n/a{{:end}}
-Here's an array iterator over 1::2 :     {{:iterate arr 1::2 }}{{.}}{{:before}}[{{:between}}, {{:after}}]{{:else}}n/a{{:end}}
+Here's an array iterator:                {{:iterate arr}}{{.}}{{:before}}[{{:between}}, {{:after}}]{{:else}}n/a{{:end}}
+Here's an array iterator over 1::2 :     {{:iterate arr 1::2}}{{.}}{{:before}}[{{:between}}, {{:after}}]{{:else}}n/a{{:end}}
 Here's a filter block:                   {{:filter html}}{{str}}{{:end}}
 Here's a comment:                        You are {{!not }}a good programmer.
