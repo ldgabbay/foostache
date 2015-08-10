@@ -5,7 +5,7 @@ lexer grammar FoostacheLexer;
 COMMENT : '{{!' .*? '}}' -> skip ;
 OPENL : '{{"' -> pushMode(inLiteral) ;
 OPEN : '{{' -> pushMode(inTag) ;
-TEXT : . ;
+TEXT : (~'{')+ | '{';
 
 
 mode inLiteral;
