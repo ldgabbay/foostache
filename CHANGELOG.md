@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.1.0 - 2015-08-10
+### Added
+- `jss` filter
+
+### Changed
+- Significantly improved parsing speed for non-foostache input
+
 ## 1.0.2 - 2015-08-05
 ### Fixed
 - Path documentation
