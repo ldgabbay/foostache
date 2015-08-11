@@ -265,6 +265,7 @@ Filters are pre-defined by the **foostache** language specification. Supported f
 
 * **`html`** &mdash; Escapes text for HTML body text and attribute values. Specifically, this replaces `&`, `<`, `>`, `"`, and `'` with their ampersand equivalents.
 * **`uri`** &mdash; As per [the IETF specification](https://tools.ietf.org/html/rfc3986#section-2), this encodes the input unicode field as UTF-8, then percent encodes all reserved characters.
+* **`jss`** &mdash; Encodes for representation within a JavaScript string literal as per [ECMA-262](http://www.ecma-international.org/ecma-262/6.0/index.html#sec-static-semantics-sv).
 
 
 ## Filter Stack
