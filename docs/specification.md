@@ -266,6 +266,24 @@ Filters are pre-defined by the **foostache** language specification. Supported f
 * **`html`** &mdash; Escapes text for HTML body text and attribute values. Specifically, this replaces `&`, `<`, `>`, `"`, and `'` with their ampersand equivalents.
 * **`uri`** &mdash; As per [the IETF specification](https://tools.ietf.org/html/rfc3986#section-2), this encodes the input unicode field as UTF-8, then percent encodes all reserved characters.
 * **`jss`** &mdash; Encodes for representation within a JavaScript string literal as per [ECMA-262](http://www.ecma-international.org/ecma-262/6.0/index.html#sec-static-semantics-sv).
+* **`bash`** &mdash; As per the [bash manual](https://www.gnu.org/software/bash/manual/bash.html#Quoting), 
+
+Enclosing characters in double quotes (‘"’) preserves the literal value of all characters within the quotes, with the exception of ‘$’, ‘`’, ‘\’, and, when history expansion is enabled, ‘!’. 
+
+The characters ‘$’ and ‘`’ retain their special meaning within double quotes (see Shell Expansions). 
+
+$
+`
+\$          $
+\`          `
+\"          "
+\\          \
+\newline    continuation
+
+The backslash retains its special meaning only when followed by one of the following characters: ‘$’, ‘`’, ‘"’, ‘\’, or newline. Within double quotes, backslashes that are followed by one of these characters are removed. Backslashes preceding characters without a special meaning are left unmodified. A double quote may be quoted within double quotes by preceding it with a backslash. If enabled, history expansion will be performed unless an ‘!’ appearing in double quotes is escaped using a backslash. The backslash preceding the ‘!’ is not removed.
+
+The special parameters ‘*’ and ‘@’ have special meaning when in double quotes (see Shell Parameter Expansion).
+
 
 
 ## Filter Stack
