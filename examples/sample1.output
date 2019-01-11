@@ -18,4 +18,3 @@ Here's an array iterator:                [a, b, c, d, e, f, g]
 Here's an array iterator over 1::2 :     [b, d, f]
 Here's a filter block:                   &lt;b&gt;I love pie&lt;/b&gt;
 Here's a comment:                        You are a good programmer.
-
