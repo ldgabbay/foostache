@@ -15,11 +15,13 @@ Sections:
 
 
 ## Template
+<span id="template"/>
 
 A template is simply a *unicode* string that contains **foostache** markup in the form of [*tags*](#tags).
 
 
 ## Tags
+<span id="tags"/>
 
 Supported tag types:
 
@@ -33,10 +35,9 @@ Supported tag types:
 * [Comment](#comment)
 
 ### Literal
+<span id="literal"/>
 
-<b>
-`{{"` *literal* `"}}`
-</b>
+<b>`{{"` *literal* `"}}`</b>
 
 Prints raw text.
 
@@ -50,10 +51,9 @@ print literal
 
 
 ### String field
+<span id="string-field"/>
 
-<b>
-`{{` [*path*](#paths) &nbsp; \[ `|` [*filter*](#filters) &nbsp; \]\* `}}`
-</b>
+<b>`{{` [*path*](#paths) &nbsp; \[ `|` [*filter*](#filters) &nbsp; \]\* `}}`</b>
 
 Prints a string field.
 
@@ -71,10 +71,9 @@ print x
 
 
 ### Number field
+<span id="number-field"/>
 
-<b>
-`{{` [*path*](#paths) &nbsp; [*number_format*](#number-formats) &nbsp; \[ `|` [*filter*](#filters) &nbsp; \]\* `}}`
-</b>
+<b>`{{` [*path*](#paths) &nbsp; [*number_format*](#number-formats) &nbsp; \[ `|` [*filter*](#filters) &nbsp; \]\* `}}`</b>
 
 Prints a number field.
 
@@ -93,13 +92,12 @@ print x
 
 
 ### Conditional block
+<span id="conditional-block"/>
 
-<b>
-`{{:if` [*expression*](#expressions) `}}` [*template*](#template) <br>
+<b>`{{:if` [*expression*](#expressions) `}}` [*template*](#template) <br>
 \[ `{{:elseif` [*elseif_expression*](#expressions) `}}` [*elseif_template*](#template) &nbsp; \]\*<br>
 \[ `{{:else}}` [*else_template*](#template) &nbsp; \]<br>
-`{{:end}}`
-</b>
+`{{:end}}`</b>
 
 Conditionally prints different output depending on the value of different expressions.
 
@@ -116,10 +114,9 @@ else:
 
 
 ### Context block
+<span id="context-block"/>
 
-<b>
-`{{:with` [*path*](#paths) `}}` [*template*](#template) `{{:end}}`
-</b>
+<b>`{{:with` [*path*](#paths) `}}` [*template*](#template) `{{:end}}`</b>
 
 Pushes the value of [*path*](#paths) onto the context stack while rendering the enclosed block.
 
@@ -133,15 +130,14 @@ contexts.pop()
 
 
 ### Iteration block
+<span id="iteration-block"/>
 
-<b>
-`{{:iterate` [*path*](#paths) &nbsp; \[ &nbsp; [*range*](#ranges) &nbsp; \] `}}` [*template*](#template)<br>
+<b>`{{:iterate` [*path*](#paths) &nbsp; \[ &nbsp; [*range*](#ranges) &nbsp; \] `}}` [*template*](#template)<br>
 \[ `{{:before}}` [*before_template*](#template) &nbsp; \]<br>
 \[ `{{:after}}` [*after_template*](#template) &nbsp; \]<br>
 \[ `{{:between}}` [*between_template*](#template) &nbsp; \]<br>
 \[ `{{:else}}` [*else_template*](#template) &nbsp; \]<br>
-`{{:end}}`
-</b>
+`{{:end}}`</b>
 
 Prints the elements in the value of [*path*](#paths) (which must be an array).
 
@@ -168,10 +164,9 @@ else:
 
 
 ### Filter block
+<span id="filter-block"/>
 
-<b>
-`{{:filter` [*filter*](#filters) `}}` [*template*](#template) `{{:end}}`
-</b>
+<b>`{{:filter` [*filter*](#filters) `}}` [*template*](#template) `{{:end}}`</b>
 
 Pushes [*filter*](#filters) onto the [*filter stack*](#filter-stack) while rendering [*template*](#template).
 
@@ -185,10 +180,9 @@ filters.pop()
 
 
 ### Comment
+<span id="comment"/>
 
-<b>
-`{{!` *comment* `}}`
-</b>
+<b>`{{!` *comment* `}}`</b>
 
 Prints nothing, ignoring the enclosed text.
 
@@ -200,6 +194,7 @@ pass
 
 
 ## Paths
+<span id="paths"/>
 
 Paths point to a specific value within the current [*context*](#contexts) or possibly within another [*context*](#contexts) deeper within the [*context stack*](#context-stack).
 
@@ -228,17 +223,17 @@ Examples:
 
 
 ## Context Stack
+<span id="context-stack"/>
 
 The context stack represents a history of input values used to render a template. Normally, the context stack is just one context, being the original JSON input. Sometimes the context will switch, for example when iterating over values within an array. This pushes a new value onto the stack temporarily, for instance the value of the current element in the array.
 
 
 ## Ranges
+<span id="ranges"/>
 
 A range specifies a sequence of indices to apply to an array. The syntax is:
 
-<b>
-*start* &nbsp; \[ `:` *stop* &nbsp; \[ `:` *step* &nbsp; \] &nbsp; \]
-</b>
+<b>*start* &nbsp; \[ `:` *stop* &nbsp; \[ `:` *step* &nbsp; \] &nbsp; \]</b>
 
 Given an array of length *n*:
 
@@ -260,6 +255,7 @@ For example:
 
 
 ## Filters
+<span id="filters"/>
 
 Filters are pre-defined by the **foostache** language specification. Supported filters are:
 
@@ -269,17 +265,17 @@ Filters are pre-defined by the **foostache** language specification. Supported f
 
 
 ## Filter Stack
+<span id="filter-stack"/>
 
 The filter stack represents the sequence of filters that need to be applied to the part of a template currently being rendered. For instance, a block of the template could be contained within an **html** filter, pushing that filter on the stack and forcing all printed fields to be escaped properly for HTML output. Within this, one might wish to show a field as a properly escaped URI field, in which case the **uri** filter would be pushed onto the stack as well.
 
 
 ## Number Formats
+<span id="number-formats"/>
 
 A number format specifies how to print a number field. The syntax is:
 
-<b>
-`%` \[`0`\] \[ *width* \] ( `d` | \[ `.` *precision* \] `f`)
-</b>
+<b>`%` \[`0`\] \[ *width* \] ( `d` | \[ `.` *precision* \] `f`)</b>
 
 * a leading `0` specifies that the number should be padded to the minimum width with zeros.
 * *width* is a positive integer specifying the minimum number of characters to be used. 
@@ -287,6 +283,7 @@ A number format specifies how to print a number field. The syntax is:
 * `d` prints the number as an integer, `f` as a floating point number. 
 
 ## Expressions
+<span id="expressions"/>
 
 <b>[*path*](#paths)</b><br/>&nbsp; &mdash; value of *path*, must be boolean<br/><br/>
 <b>[*path*](#paths) `exists`</b><br/>&nbsp; &mdash; whether the value of *path* exists<br/><br/>
@@ -302,6 +299,7 @@ A number format specifies how to print a number field. The syntax is:
 <b>`not` [*expression*](#expressions)</b><br/>&nbsp; &mdash; logical not of the result of *expression*<br/><br/>
 
 ## Keywords
+<span id="keywords"/>
 
 These keywords are reserved and cannot be used as unquoted object keys.
 
